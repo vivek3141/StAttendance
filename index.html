@@ -31,7 +31,7 @@
 		    <label for="exampleInputPassword1">Password</label>
 		    <input type="password" class="form-control" id="password" placeholder="Password">
 		  </div>
-		  <button type="submit" class="btn btn-default">Submit</button>
+		  <button type="submit" class="btn btn-default" onclick="run()">Submit</button>
 		</form>
 	  </section>
 	</div>
@@ -43,7 +43,28 @@
   	<!-- Include all compiled plugins (below), or include individual files as needed -->
   	<script src="js/bootstrap.min.js"></script>
   	<script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+  	<script type="text/javascript">
+  		function run(){
+  			var a = document.getElementById("School").value;
+  			var b = document.getElementById("name").value;
+  			var c = document.getElementById("password").value;
+  	
+  			val = runPyScript((a,b,c));
+	    	window.alert(val);
+  		}
+	    function runPyScript(input){
+	        var jqXHR = $.ajax({
+	            type: "POST",
+	            url: "take_attendance.py",
+	            async: false,
+	            data: { param: input }
+	        });
 
+	        return jqXHR.responseText;
+	    }
+	
+
+	</script>
 
 </body>
 </html>
